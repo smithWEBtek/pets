@@ -1,0 +1,19 @@
+<h3><%= @owner.name %> the owner.</h3>
+<p>City:<%= @owner.city %></p>
+ 
+		<p>cats:</p>
+		<% @owner.cats.each do |cat| %>
+			<fieldset class='narrow'>
+				<p>name: <%= cat.name%></p>
+				<p>breed: <%= cat.breed%></p>
+			</fieldset>
+		<% end %>
+
+		<p>dogs:</p>
+		<% @owner.dogs.each do |dog| %>
+			<fieldset class='narrow'>
+				<p>name: <%= dog.name%></p>
+				<p>breed: <%= dog.breed%></p>
+			</fieldset>
+		<% end %>
+	</fieldset>

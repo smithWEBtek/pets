@@ -1,0 +1,8 @@
+<h2>Owners</h2>
+<div id="owners-list">+++++++++++++++++++++++++</div>
+
+<% @owners.each do |owner| %>
+	<fieldset class='narrow'> 
+		<p><%= link_to owner.name, owner_path(owner) %>: <%= owner.city %></p>
+	</fieldset> 
+<% end %>
