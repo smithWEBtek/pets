@@ -59,10 +59,18 @@ Owner.prototype.ownerPetsHTML = function () {
 
 	return (`
 		<fieldset class='narrow'>
-			<div id=${this.id}>
+			<div id=${this.id} class='color${randomColor()}'>
 			cats:<div>${cats}</div>
 			dogs:<div>${dogs}</div>
 			</div>
 		</fieldset>
 	`)
+}
+
+function randomColor() {
+	return getRandomArbitrary(1, 7)
+}
+
+function getRandomArbitrary(min, max) {
+	return Math.floor(Math.random() * (max - min) + min);
 }
