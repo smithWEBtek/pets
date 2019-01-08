@@ -1,0 +1,14 @@
+<h3>New Cat Form</h3>
+
+<%= form_for cat do |f| %>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %><br>
+
+	<%= f.label :breed %><br>
+	<%= f.text_field :breed %><br>
+
+	<%= f.label :owner %><br>
+	<%= f.collection_select :owner_id, Owner.all, :id, :name %><br>
+
+	<%= f.submit %>
+<% end %>

@@ -1,0 +1,7 @@
+<% @dogs.each do |dog| %>
+	<fieldset class='narrow'>
+		<p>Name: <%= dog.name %></p>
+		<p>Breed: <%= dog.breed %></p>
+		<p>Owner name:<%= dog.owner.name %></p>
+	</fieldset>
+<% end %>
