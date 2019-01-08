@@ -1,34 +1,20 @@
 $(function () {
 	console.log('owners.js loaded ... ');
-	getOwners()
 })
 
-const base_url = 'http://localhost:3000/'
-
-function getOwners() {
-	$('a.index-list').on('click', function (event) {
-		event.preventDefault()
-
-		$.ajax({
-			url: base_url + 'owners',
-			method: 'get',
-			dataType: 'json'
-		}).done(function (data) {
-
-			data.forEach(element => {
-				let owner = new Owner(element)
-				let ownerData = owner.ownerHTML()
-				$('div#owners-list').append(ownerData)
-			});
-			getOwnerData()
-		})
-	})
+function getOwners(data) {
+	$('div#index-list-div').html('')
+	data.forEach(element => {
+		let owner = new Owner(element)
+		let ownerData = owner.ownerHTML()
+		$('div#index-list-div').append(ownerData)
+	});
+	ownerPets()
 }
 
-function getOwnerData() {
-	$('.owner-data-button').on('click', function (event) {
+function ownerPets() {
+	$('.owner-pets-button').on('click', function (event) {
 		event.preventDefault()
-
 		let id = this.attributes.owner_id.value
 
 		$.ajax({
@@ -36,15 +22,9 @@ function getOwnerData() {
 			method: 'get',
 			dataType: 'json'
 		}).done(function (data) {
-
-			console.log(data);
 			let owner = new Owner(data)
-			let ownerHTML = owner.ownerHTML()
-
-			debugger
-			// debugger
-			$(`div#${id}`).html(ownerHTML)
-
+			let ownerPets = owner.ownerPetsHTML()
+			$(`div#${id}`).append(ownerPets)
 		})
 	})
 }
@@ -60,17 +40,29 @@ class Owner {
 }
 
 Owner.prototype.ownerHTML = function () {
-
-	let cats = this.cats.map((cat) => {
-		return cat.name
-	})
-
 	return (`
 		<div id=${this.id}>
 			<p>${this.name}: ${this.city}</p>
-			<p>${cats}</p>
-
-			<button class='owner-data-button' owner_id=${this.id}>owner data</button>
+			<button class='owner-pets-button' owner_id=${this.id}>${this.name}'s pets</button>
 		</div>
+	`)
+}
+
+Owner.prototype.ownerPetsHTML = function () {
+	let cats = this.cats.map((cat) => {
+		return (`<p>${cat.name}</p>`)
+	}).join('')
+
+	let dogs = this.dogs.map((dog) => {
+		return (`<p>${dog.name}</p>`)
+	}).join('')
+
+	return (`
+		<fieldset class='narrow'>
+			<div id=${this.id}>
+			cats:<div>${cats}</div>
+			dogs:<div>${dogs}</div>
+			</div>
+		</fieldset>
 	`)
 }

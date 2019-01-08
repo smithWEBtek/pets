@@ -10,11 +10,18 @@
   </head>
 
   <body>
+	<h2>Rails links</h2>
+	<h2><%= link_to 'owners', owners_path %> |
+ 			<%= link_to 'cats', cats_path %> |
+			<%= link_to 'dogs', dogs_path %></h2>
+	<hr>
 
+	<h2>Ajax links</h2>
 	<h2><%= link_to 'owners', owners_path, id: 'owners', class: 'index-list' %> |
  			<%= link_to 'cats', cats_path, id: 'cats', class: 'index-list' %> |
 			<%= link_to 'dogs', dogs_path, id: 'dogs', class: 'index-list' %></h2>
 	<hr>
+	<div id='index-list-div'></div>
     <%= yield %>
   </body>
 </html>
