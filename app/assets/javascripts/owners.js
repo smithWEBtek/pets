@@ -22,10 +22,10 @@ function ownerPets() {
 			method: 'get',
 			dataType: 'json'
 		}).done(function (data) {
-			// $(`div#${id}`).html('')
+
 			let owner = new Owner(data)
 			let ownerPets = owner.ownerPetsHTML()
-			$(`div#${id}`).append(ownerPets)
+			$(`div#pets${id}`).html(ownerPets)
 		})
 	})
 }
@@ -45,7 +45,7 @@ Owner.prototype.ownerHTML = function () {
 		<div id=${this.id}>
 			<p>${this.name}: ${this.city}</p>
 			<button class='owner-pets-button' owner_id=${this.id}>${this.name}'s pets</button>
-			<div data-owner_id=${this.id} class='owner-pets'></div>
+			<div id='pets${this.id}'></div>
 		</div>
 	`)
 }
@@ -61,7 +61,7 @@ Owner.prototype.ownerPetsHTML = function () {
 
 	return (`
 		<fieldset class='narrow'>
-			<div id=${this.id} class='color${randomColor()}'>
+			<div class='color${randomColor()}'>
 			cats:<div>${cats}</div>
 			dogs:<div>${dogs}</div>
 			</div>

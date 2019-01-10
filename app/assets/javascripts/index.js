@@ -16,25 +16,33 @@ function getIndexList() {
 		// 	dataType: 'json'
 		// }).done(function (data) {
 
-		$.get(base_url + id, {
-			method: 'get',
-			format: 'json',
-			// }).done(function (data) {
-		}).success(function (data) {
+		// $.get(base_url + id, {
+		// 	method: 'get',
+		// 	format: 'json',
+		// 	// }).done(function (data) {
+		// }).success(function (data) {
 
-			switch (id) {
-				case 'owners':
-					getOwners(data)
-					break;
-				case 'cats':
-					getCats(data)
-					break;
-				case 'dogs':
-					getDogs(data)
-					break;
-				default:
-					console.log('No existing list specified.');
-			}
-		})
+		fetch(base_url + id + '.json')
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				// console.log(JSON.stringify(data));
+				console.log("data: ", data);
+
+				switch (id) {
+					case 'owners':
+						getOwners(data)
+						break;
+					case 'cats':
+						getCats(data)
+						break;
+					case 'dogs':
+						getDogs(data)
+						break;
+					default:
+						console.log('No existing list specified.');
+				}
+			});
 	})
 }
