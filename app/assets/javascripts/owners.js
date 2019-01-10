@@ -3,7 +3,7 @@ $(function () {
 })
 
 function getOwners(data) {
-	$('div#index-list-div').html('')
+	$('div#index-list-div').html('<h3>Owners</h3>')
 	data.forEach(element => {
 		let owner = new Owner(element)
 		let ownerData = owner.ownerHTML()

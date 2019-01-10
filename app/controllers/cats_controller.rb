@@ -3,7 +3,11 @@ before_action :set_cat, only: [:show, :edit, :update, :destroy]
 	
 	def index
 		@cats = Cat.all
-	end
+		respond_to do |f|
+			f.html { render :index }
+			f.json { render json: @cats}
+		end
+	end	
 
 	def show
 	end

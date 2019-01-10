@@ -7,14 +7,14 @@ const base_url = 'http://localhost:3000/'
 
 function getIndexList() {
 	// jquery ---------------------------------------------------
-	// 	$('a.index-list').on('click', function (event) {
-	// 		event.preventDefault()
-	// 		let id = this.id
-
-	// javascript -----------------------------------------------
-	document.querySelector('a.index-list').addEventListener('click', function (event) {
+	$('a.index-list').on('click', function (event) {
 		event.preventDefault()
 		let id = this.id
+
+		// javascript -----------------------------------------------
+		// document.querySelector('a.index-list').addEventListener('click', function (event) {
+		// 	event.preventDefault()
+		// 	let id = this.id
 
 		//.ajax ---------------------------------------------------
 		// $.ajax({

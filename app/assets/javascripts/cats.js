@@ -4,15 +4,11 @@ $(function () {
 
 function getCats(data) {
 	$('div#index-list-div').html('')
-	data.forEach(element => {
-		let cat = new Cat(element)
-
-		debugger;
-
+	data.forEach(item => {
+		let cat = new Cat(item)
 		let catData = cat.catHTML()
 		$('div#index-list-div').append(catData)
 	});
-	showOwner()
 }
 
 class Cat {
@@ -21,4 +17,13 @@ class Cat {
 		this.owner_id = obj.owner_id
 		this.owner = obj.owner
 	}
+}
+
+Cat.prototype.catHTML = function () {
+	return (`
+		<div>
+			<p>${this.name}</p>
+			<p>owner: ${this.owner.name}</p>
+		</div>
+	`)
 }
