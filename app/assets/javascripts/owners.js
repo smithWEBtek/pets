@@ -22,6 +22,7 @@ function ownerPets() {
 			method: 'get',
 			dataType: 'json'
 		}).done(function (data) {
+			// $(`div#${id}`).html('')
 			let owner = new Owner(data)
 			let ownerPets = owner.ownerPetsHTML()
 			$(`div#${id}`).append(ownerPets)
@@ -44,6 +45,7 @@ Owner.prototype.ownerHTML = function () {
 		<div id=${this.id}>
 			<p>${this.name}: ${this.city}</p>
 			<button class='owner-pets-button' owner_id=${this.id}>${this.name}'s pets</button>
+			<div data-owner_id=${this.id} class='owner-pets'></div>
 		</div>
 	`)
 }

@@ -10,11 +10,17 @@ function getIndexList() {
 		event.preventDefault()
 		let id = this.id
 
-		$.ajax({
-			url: base_url + id,
+		// $.ajax({
+		// 	url: base_url + id,
+		// 	method: 'get',
+		// 	dataType: 'json'
+		// }).done(function (data) {
+
+		$.get(base_url + id, {
 			method: 'get',
-			dataType: 'json'
-		}).done(function (data) {
+			format: 'json',
+			// }).done(function (data) {
+		}).success(function (data) {
 
 			switch (id) {
 				case 'owners':
